@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2021_06_30_230355) do
   create_table "appointments", force: :cascade do |t|
     t.integer "patient_id", null: false
     t.integer "employee_id", null: false
-    t.datetime "date_and_time"
+    t.string "date_and_time"
     t.string "reason"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_06_30_230355) do
 
   create_table "patients", force: :cascade do |t|
     t.string "address"
-    t.datetime "date_of_birth"
+    t.string "date_of_birth"
     t.string "email"
     t.string "ethnicity"
     t.string "language"

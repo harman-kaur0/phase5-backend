@@ -1,4 +1,4 @@
-class Admin::PatientsController < ApplicationController
+class PatientsController < ApplicationController
     before_action :authorized
     before_action :set_patient, only: [:show, :update]
 
@@ -8,7 +8,7 @@ class Admin::PatientsController < ApplicationController
     end
 
     def show
-        render json: patient
+        render json: @patient
     end
 
     def create
@@ -22,17 +22,17 @@ class Admin::PatientsController < ApplicationController
     end
 
     def update
-        if patient.update(patient_params)
-            render json: patient
+        if @patient.update(patient_params)
+            render json: @patient
         else
-            render json: {error: patient.errors}, status: :unprocessable_entity
+            render json: {error: @patient.errors}, status: :unprocessable_entity
         end
     end
 
     private
 
     def set_patient
-        patient = Patient.find(params[:id])
+        @patient = Patient.find(params[:id])
     end
 
     def patient_params

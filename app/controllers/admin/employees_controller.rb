@@ -6,12 +6,12 @@ class Admin::EmployeesController < ApplicationController
 
     # getting the employees with doctor role
     def doctors
-        doctors = Employee.all.map{|emp| emp.role == "doctor"}
+        doctors = Employee.all.select{|emp| emp.role == "Doctor"}
         render json: doctors
     end
 
     def show
-        render json: employee
+        render json: @employee
     end
 
     
@@ -27,20 +27,20 @@ class Admin::EmployeesController < ApplicationController
     end
 
     def update
-        if employee.update(employee_params)
-            render json: employee
+        if @employee.update(employee_params)
+            render json: @employee
         else
-            render json: {error: employee.errors}, status: :unprocessable_entity
+            render json: {error: @employee.errors}, status: :unprocessable_entity
         end
     end
 
     def destroy
-        employee.destroy
+        @employee.destroy
     end
 
     private
     def set_employee
-        employee = Employee.find(params[:id])
+        @employee = Employee.find(params[:id])
     end
 
     def employee_params

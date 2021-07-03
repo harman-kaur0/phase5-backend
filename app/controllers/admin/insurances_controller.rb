@@ -1,4 +1,4 @@
-class InsurancesController < ApplicationController
+class Admin::InsurancesController < ApplicationController
     before_action :authorized
     before_action :set_insurance, only: [:show, :update, :destroy]
     def index
@@ -7,7 +7,7 @@ class InsurancesController < ApplicationController
     end
 
     def show
-        render json: insurance
+        render json: @insurance
     end
 
     def create
@@ -21,20 +21,20 @@ class InsurancesController < ApplicationController
     end
 
     def update
-        if insurance.update(insurance_params)
-            render json: insurance
+        if @insurance.update(insurance_params)
+            render json: @insurance
         else
-            render json: {error: insurance.errors}, status: :unprocessable_entity
+            render json: {error: @insurance.errors}, status: :unprocessable_entity
         end
     end
 
     def destroy
-        insurance.destroy
+        @insurance.destroy
     end
 
     private
     def set_insurance
-        insurance = Insurance.find(params[:id])
+        @insurance = Insurance.find(params[:id])
     end
 
     def insurance_params
