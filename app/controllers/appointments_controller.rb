@@ -7,7 +7,7 @@ class AppointmentsController < ApplicationController
     end
 
     def show
-        render json: appointments
+        render json: @appointment
     end
 
     def create
@@ -21,23 +21,23 @@ class AppointmentsController < ApplicationController
     end
 
     def update
-        if appointment.update(appointment_params)
-            render json: appointment
+        if @appointment.update(appointment_params)
+            render json: @appointment
         else
-            render json: {error: appointment.errors}, status: :unprocessable_entity
+            render json: {error: @appointment.errors}, status: :unprocessable_entity
         end
     end
 
     def destroy
-        appointment.destroy
+        @appointment.destroy
     end
 
     private
     def set_appointment
-        appointment = Appointment.find(params[:id])
+        @appointment = Appointment.find(params[:id])
     end
 
     def appointment_params
-        params.require(:appointment).permit(:patient_id, :employee_id, :reason, :date_and_time)
+        params.require(:appointment).permit(:patient_id, :employee_id, :reason, :startDate, :endDate)
     end
 end
