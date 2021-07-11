@@ -12,6 +12,7 @@ class AppointmentsController < ApplicationController
 
     def create
         appointment = Appointment.new(appointment_params)
+        puts appointment_params
 
         if appointment.save
             render json: appointment, status: :created
