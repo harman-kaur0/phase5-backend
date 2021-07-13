@@ -3,7 +3,7 @@ class PatientsController < ApplicationController
     before_action :set_patient, only: [:show, :update]
 
     def index
-        patients = Patient.all
+        patients = Patient.all.sort{|a,b| b.created_at <=> a.created_at}
         render json: patients
     end
 

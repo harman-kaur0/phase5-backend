@@ -3,6 +3,7 @@ class PatientSerializer < ActiveModel::Serializer
   has_many :insurances
   has_many :appointments
 
+
   def prescriptions
     object.prescriptions.map{|p| PrescriptionSerializer.new(p)}
   end
