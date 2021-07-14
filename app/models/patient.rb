@@ -5,6 +5,6 @@ class Patient < ApplicationRecord
     has_many :prescriptions
     has_many :employees, through: :prescriptions
 
-    validates :name, :date_of_birth, :address, :phone_number, :ethnicity, :race, :language, presence: true
+    validates :name, :date_of_birth, :phone_number, presence: true
 
 end
