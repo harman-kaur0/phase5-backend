@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     resources :employees
     get '/doctors', to: 'employees#doctors'
     resources :insurances
+    resources :lab_results
     resources :prescriptions
     post '/login', to: 'authentication#login'
     get '/getemployee', to: 'authentication#getemployee'

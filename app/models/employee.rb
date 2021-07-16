@@ -3,6 +3,7 @@ class Employee < ApplicationRecord
 
     validates :email, :username, uniqueness: {case_sensitive: false}
     validates :name, :password, :email, :username, :role, presence: true
+    validates :username, :email, uniqueness: true
     validates :password, length: {minimum: 8}
     validate :valid_email?
     
